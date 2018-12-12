@@ -9,6 +9,7 @@ class MyBot {
      * @param {TurnContext} on turn context object.
      */
     async onTurn(turnContext) {
+      console.log('onTurn activity: ', JSON.stringify(turnContext.activity));
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         if (turnContext.activity.type === ActivityTypes.Message) {
             await turnContext.sendActivity(`You said '${ turnContext.activity.text }'`);
