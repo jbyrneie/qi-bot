@@ -60,9 +60,15 @@ const endpointConfig = botConfig.findServiceByNameOrId(BOT_CONFIGURATION);
 
 // Create adapter.
 // See https://aka.ms/about-bot-adapter to learn more about .bot file its use and bot configuration.
+/*
 const adapter = new BotFrameworkAdapter({
     appId: endpointConfig.appId || process.env.MICROSOFT_APP_ID,
     appPassword: endpointConfig.appPassword || process.env.MICROSOFT_APP_PASSWORD
+});
+*/
+const adapter = new BotFrameworkAdapter({
+    appId: process.env.MICROSOFT_APP_ID,
+    appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
 
 // Catch-all for errors.
