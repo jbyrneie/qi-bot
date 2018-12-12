@@ -28,6 +28,8 @@ const DEV_ENVIRONMENT = 'development';
 // See https://aka.ms/about-bot-file to learn more about .bot file its use and bot configuration.
 const BOT_CONFIGURATION = (process.env.NODE_ENV || DEV_ENVIRONMENT);
 
+console.log('BOT_CONFIGURATION: ', BOT_CONFIGURATION);
+
 // Create HTTP server
 const server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, () => {
@@ -38,6 +40,8 @@ server.listen(process.env.port || process.env.PORT || 3978, () => {
 
 // .bot file path
 const BOT_FILE = path.join(__dirname, (process.env.botFilePath || ''));
+
+console.log('BOT_FILE: ', BOT_FILE);
 
 // Read bot configuration from .bot file.
 let botConfig;
