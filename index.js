@@ -71,6 +71,9 @@ const adapter = new BotFrameworkAdapter({
     appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
 
+console.log('appId: ', process.env.MICROSOFT_APP_ID);
+console.log('appPassword:', process.env.MICROSOFT_APP_PASSWORD);
+
 // Catch-all for errors.
 adapter.onTurnError = async (context, error) => {
     // This check writes out errors to console log .vs. app insights.
