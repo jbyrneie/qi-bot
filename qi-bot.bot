@@ -1,5 +1,5 @@
 {
-    "name": "qi-bot",
+    "name": "GLG QI Bot",
     "services": [
         {
             "type": "endpoint",
