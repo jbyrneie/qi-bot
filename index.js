@@ -93,3 +93,8 @@ server.post('/api/messages', (req, res) => {
         await myBot.onTurn(context);
     });
 });
+
+server.get('/api/messages', (req, res) => {
+    console.log('GET /api/messages called....');
+    res.send('Go AWAY');
+});
