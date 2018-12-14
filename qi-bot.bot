@@ -1,5 +1,6 @@
 {
     "name": "qi-bot",
+    "description": "",
     "services": [
         {
             "type": "endpoint",
@@ -8,8 +9,16 @@
             "appId": "",
             "appPassword": "",
             "id": "1"
+        },
+        {
+            "type": "endpoint",
+            "endpoint": "https://localhost:3978/api/messages",
+            "name": "Test",
+            "id": "90"
         }
     ],
     "padlock": "",
-    "version": "2.0"
+    "version": "2.0",
+    "path": "/Users/jbyrne/git/bots/qi-bot/qi-bot.bot",
+    "overrides": null
 }
