@@ -7,7 +7,8 @@ const restify = require('restify');
 
 // Import required bot services.
 // See https://aka.ms/bot-services to learn more about the different parts of a bot.
-const { BotFrameworkAdapter } = require('botbuilder');
+//const { BotFrameworkAdapter } = require('botbuilder');
+const { BotFrameworkAdapter, MemoryStorage, ConversationState, UserState } = require('botbuilder');
 
 // Import required bot configuration.
 const { BotConfiguration } = require('botframework-config');
@@ -76,14 +77,55 @@ console.log('appPassword:', process.env.MICROSOFT_APP_PASSWORD);
 
 // Catch-all for errors.
 adapter.onTurnError = async (context, error) => {
-    // This check writes out errors to console log .vs. app insights.
+    // This check writes out errors to console log
+    // NOTE: In production environment, you should consider logging this to Azure
+    //       application insights.
     console.error(`\n [onTurnError]: ${ error }`);
     // Send a message to the user
     await context.sendActivity(`Oops. Something went wrong!`);
+    // Clear out state
+    await conversationState.load(context);
+    await conversationState.clear(context);
+    // Save state changes.
+    await conversationState.saveChanges(context);
 };
 
+// Define a state store for your bot.
+// See https://aka.ms/about-bot-state to learn more about using MemoryStorage.
+// A bot requires a state store to persist the dialog and user state between messages.
+let conversationState, userState;
+
+// For local development, in-memory storage is used.
+// CAUTION: The Memory Storage used here is for local bot debugging only. When the bot
+// is restarted, anything stored in memory will be gone.
+const memoryStorage = new MemoryStorage();
+conversationState = new ConversationState(memoryStorage);
+userState = new UserState(memoryStorage);
+
+// CAUTION: You must ensure your product environment has the NODE_ENV set
+//          to use the Azure Blob storage or Azure Cosmos DB providers.
+
+// Add botbuilder-azure when using any Azure services.
+// const { BlobStorage } = require('botbuilder-azure');
+// // Get service configuration
+// const blobStorageConfig = botConfig.findServiceByNameOrId(STORAGE_CONFIGURATION_ID);
+// const blobStorage = new BlobStorage({
+//     containerName: (blobStorageConfig.container || DEFAULT_BOT_CONTAINER),
+//     storageAccountOrConnectionString: blobStorageConfig.connectionString,
+// });
+// conversationState = new ConversationState(blobStorage);
+// userState = new UserState(blobStorage);
+
 // Create the main dialog.
-const myBot = new MyBot();
+//const myBot = new MyBot();
+// Create the main dialog.
+let myBot;
+try {
+    myBot = new MyBot(conversationState, userState, botConfig);
+} catch (err) {
+    console.error(`[botInitializationError]: ${ err }`);
+    process.exit();
+}
 
 // Listen for incoming requests.
 server.post('/api/messages', (req, res) => {
