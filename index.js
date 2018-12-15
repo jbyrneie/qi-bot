@@ -88,6 +88,7 @@ adapter.onTurnError = async (context, error) => {
     await conversationState.clear(context);
     // Save state changes.
     await conversationState.saveChanges(context);
+    console.log('conversationState: ', JSON.stringify(conversationState));
 };
 
 // Define a state store for your bot.
@@ -133,6 +134,7 @@ server.post('/api/messages', (req, res) => {
     adapter.processActivity(req, res, async (context) => {
         // Route to main dialog.
         await myBot.onTurn(context);
+        console.log('conversationState: ', JSON.stringify(conversationState));
     });
 });
 
