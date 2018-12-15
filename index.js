@@ -88,7 +88,6 @@ adapter.onTurnError = async (context, error) => {
     await conversationState.clear(context);
     // Save state changes.
     await conversationState.saveChanges(context);
-    console.log('conversationState: ', JSON.stringify(conversationState));
 };
 
 // Define a state store for your bot.
@@ -130,15 +129,12 @@ try {
 
 // Listen for incoming requests.
 server.post('/api/messages', (req, res) => {
-    console.log('/api/messages called....');
-    adapter.processActivity(req, res, async (context) => {
-        // Route to main dialog.
-        await myBot.onTurn(context);
-        console.log('conversationState: ', JSON.stringify(conversationState));
-    });
+  adapter.processActivity(req, res, async (context) => {
+    // Route to main dialog.
+    await myBot.onTurn(context);
+  });
 });
 
 server.get('/api/messages', (req, res) => {
-    console.log('GET /api/messages called....');
-    res.send('Go AWAY');
+  res.send('Go AWAY');
 });

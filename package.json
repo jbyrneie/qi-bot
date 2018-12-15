@@ -2,7 +2,7 @@
     "name": "qi-bot",
     "version": "1.0.0",
     "description": "A Bot to do stuff for Surveys",
-    "author": "Generated using Microsoft Bot Builder Yeoman generator v4.1.23",
+    "author": "Jack Byrne - jbyrne@Qglgroup.com",
     "license": "MIT",
     "main": "index.js",
     "scripts": {

@@ -15,7 +15,6 @@
     {
       "type": "TextBlock",
       "size": "default",
-      "isSubtle": "yes",
       "text": "I am here to help make the Survey experience better",
       "wrap": true,
       "maxLines": 0
@@ -23,7 +22,6 @@
     {
       "type": "TextBlock",
       "size": "default",
-      "isSubtle": "yes",
       "text": "Type something to get started.....",
       "wrap": true,
       "maxLines": 0
