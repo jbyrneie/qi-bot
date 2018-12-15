@@ -58,6 +58,8 @@ class MyBot {
     * @param {Context} context turn context from the adapter
     */
     async onTurn(context) {
+      const name = context.activity.from.name.split(' ')
+      console.log('name: ', name);
       if (context.activity.type === ActivityTypes.Message) {
         let dialogResult;
         // Create a dialog context
@@ -75,7 +77,7 @@ class MyBot {
               await context.sendActivity(_message);
               break;
             default:
-              await context.sendActivity(`Sorry ${context.activity.from.name}, I dont understand that request..... here is more info`);
+              await context.sendActivity(`Sorry ${name[0]}, I dont understand that request..... here is more info`);
               const menuCard = CardFactory.adaptiveCard(MenuCard);
               await context.sendActivity({ attachments: [menuCard] });
           }

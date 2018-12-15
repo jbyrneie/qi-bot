@@ -15,7 +15,6 @@
     {
       "type": "TextBlock",
       "size": "default",
-      "isSubtle": "yes",
       "text": "q - Show how many invite messages are in the queue",
       "wrap": true,
       "maxLines": 0
@@ -23,7 +22,6 @@
     {
       "type": "TextBlock",
       "size": "default",
-      "isSubtle": "yes",
       "text": "d - Show details of the 1st 5 messages in the queue",
       "wrap": true,
       "maxLines": 0
